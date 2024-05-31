@@ -1,11 +1,11 @@
 package com.patika.estateagent.service;
 import com.patika.estateagent.converter.SummerHouseConverter;
 import com.patika.estateagent.converter.VillaConverter;
-import com.patika.estateagent.dto.request.SummerHouseSaveRequest;
 import com.patika.estateagent.dto.request.VillaSaveRequest;
+import com.patika.estateagent.dto.response.SummerHouseResponse;
+import com.patika.estateagent.dto.response.VillaResponse;
 import com.patika.estateagent.model.SummerHouse;
 import com.patika.estateagent.model.Villa;
-import com.patika.estateagent.repository.RepositoryFactory;
 import com.patika.estateagent.repository.VillaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class VillaService {
-    private VillaRepository villaRepository = RepositoryFactory.createVillaRepository();;
+    private final VillaRepository villaRepository;
 
     public void save(VillaSaveRequest request) throws ClassNotFoundException{
 
@@ -39,5 +39,13 @@ public class VillaService {
     public List<Villa> getVillaList() {
         return villaRepository.getVillaList();
     }
+
+
+
+    public List<VillaResponse> getVillaResponseList(){
+        return VillaConverter.toResponse(villaRepository.getVillaList());
+    }
+
+
 
 }

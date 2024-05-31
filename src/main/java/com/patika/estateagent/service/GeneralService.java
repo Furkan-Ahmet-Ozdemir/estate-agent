@@ -2,20 +2,23 @@ package com.patika.estateagent.service;
 
 
 import com.patika.estateagent.model.Residence;
-import com.patika.estateagent.model.Villa;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+
+@RequiredArgsConstructor
 @Service
+@Slf4j
 public class GeneralService {
 
-    HouseService houseService = new HouseService();
-    SummerHouseService summerHouseService = new SummerHouseService();
-    VillaService villaService = new VillaService();
+    private final HouseService houseService;
+    private final SummerHouseService summerHouseService;
+    private final VillaService villaService;
 
     public Long calculateAllHouses(){
         return houseService.getHouseList().stream()
